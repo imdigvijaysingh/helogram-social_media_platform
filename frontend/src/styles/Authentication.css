@@ -1,0 +1,251 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.auth-container {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  padding: 20px;
+}
+
+.auth-card {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 90vh;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  display: flex;
+}
+
+.auth-panel {
+  padding: 40px;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  opacity: 1;
+}
+
+.login-panel {
+  transform: translateX(0);
+  width: 50%;
+}
+
+.login-panel.inactive {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.signup-panel {
+  transform: translateX(0);
+  width: 50%;
+}
+
+.signup-panel.inactive {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.logo {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.form-content h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.name-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: #5046E4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 20px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.social-login {
+  text-align: center;
+}
+
+.social-login p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background: white;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.social-icon:hover {
+  background: #f5f5f5;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Toggle Panel */
+.toggle-panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: #5046E4;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.6s ease-in-out;
+  z-index: 10;
+}
+
+.toggle-panel.login-active {
+  transform: translateX(100%);
+}
+
+.toggle-panel.signup-active {
+  transform: translateX(0);
+}
+
+.toggle-content {
+  padding: 40px;
+  width: 100%;
+}
+
+.toggle-content h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.toggle-content p {
+  font-size: 16px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.toggle-btn {
+  padding: 12px 40px;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.toggle-btn:hover {
+  background: white;
+  color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .auth-card {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .auth-panel {
+    width: 100% !important;
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .login-panel.inactive,
+  .signup-panel.inactive {
+    display: none;
+  }
+
+  .toggle-panel {
+    position: relative;
+    width: 100%;
+    transform: none !important;
+  }
+
+  .name-fields {
+    grid-template-columns: 1fr;
+  }
+}

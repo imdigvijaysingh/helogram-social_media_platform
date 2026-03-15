@@ -1,0 +1,29 @@
+const postModel = require('../models/post.model');
+const uploadFile = require('../services/storage.service');
+
+async function createPost(req, res) {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ 
+                message: "Image is required" 
+            });
+        }
+
+        const result = await uploadFile(req.file.buffer);
+
+        const post = await postModel.create({
+            image: result.url,
+            caption: req.body.caption
+        });
+
+        return res.status(201).json({
+            message: "Post created successfully",
+            post
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Failed to create post" });
+    }
+}
+
+module.exports = { createPost };

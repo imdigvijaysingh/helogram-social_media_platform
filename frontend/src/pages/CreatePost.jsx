@@ -1,7 +1,5 @@
-import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.svg";
 import '../styles/CreatePost.css'
 
 const CreatePost = () => {

@@ -1,14 +1,86 @@
 import "../styles/Authentication.css";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Authentication = () => {
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleAuthSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.target);
+
+    if (!isLogin) {
+      // Sign Up Logic
+      axios
+        .post("http://localhost:3000/auth/signup", {
+          firstName: formData.get("firstName"),
+          lastName: formData.get("lastName"),
+          email: formData.get("email"),
+          password: formData.get("password"),
+        })
+        .then((res) => {
+          setIsLogin(true);
+          navigate("/profile");
+        })
+        .catch((err) => {
+          const message = err.response?.data?.message;
+
+          if (message === "A user with this email already exists.") {
+            setEmailError(message);
+          }
+
+          setIsLoading(false);
+        });
+    } else {
+      // Log In Logic
+      axios
+        .post("http://localhost:3000/auth/login", {
+          email: formData.get("email"),
+          password: formData.get("password"),
+        })
+        .then((res) => {
+          navigate("/feed");
+        })
+        .catch((err) => {
+          const message = err.response?.data?.message;
+
+          if (message === "User not found. Please sign up first.") {
+            setEmailError(message);
+          }
+
+          if (message === "Wrong password. Please try again.") {
+            setPasswordError(message);
+          }
+
+          setIsLoading(false);
+          
+        });
+    }
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSuccess(true);
+    }, 1000);
+
+    setEmailError("");
+    setPasswordError("");
+  };
+
   const [isLogin, setIsLogin] = useState(true);
-  const [rememberMe, setRememberMe] = useState(false);
-  const [acceptTerms, setAcceptTerms] = useState(false);
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
   };
+
   return (
     <div className="auth-page">
       <div className="auth-container">
@@ -26,27 +98,33 @@ const Authentication = () => {
                 your onboarding flows.
               </p>
 
-              <form>
+              <form onSubmit={handleAuthSubmit}>
                 <div className="form-group">
                   <label>Email</label>
                   <input
                     type="email"
+                    name="email"
                     placeholder="Enter your email address"
                     className="form-input"
                   />
+                  
+                  {emailError && <p className="error-text">{emailError}</p>}
+                
                 </div>
 
                 <div className="form-group">
                   <label>Password</label>
                   <input
                     type="password"
+                    name="password"
                     placeholder="Enter your password"
                     className="form-input"
                   />
+                  {passwordError && <p className="error-text">{passwordError}</p>}
                 </div>
-               
-                <button type="submit" className="submit-btn">
-                  LOG IN
+
+                <button type="submit" className="submit-btn" disabled={isLoading}>
+                  {isLoading && isLogin ? <span className="spinner"></span> : "LOG IN"}
                 </button>
               </form>
             </div>
@@ -65,12 +143,13 @@ const Authentication = () => {
                 onboarding experience.
               </p>
 
-              <form onSubmit={(e) => e.preventDefault()}>
+              <form onSubmit={handleAuthSubmit}>
                 <div className="name-fields">
                   <div className="form-group">
                     <label>First Name</label>
                     <input
                       type="text"
+                      name="firstName"
                       placeholder="Your first name"
                       className="form-input"
                       required
@@ -80,6 +159,7 @@ const Authentication = () => {
                     <label>Last Name(Optional)</label>
                     <input
                       type="text"
+                      name="lastName"
                       placeholder="Your last name"
                       className="form-input"
                     />
@@ -90,24 +170,27 @@ const Authentication = () => {
                   <label>Email</label>
                   <input
                     type="email"
+                    name="email"
                     placeholder="Enter your email address"
                     className="form-input"
                     required
                   />
+                  {emailError && <p className="error-text">{emailError}</p>}
                 </div>
 
                 <div className="form-group">
                   <label>Password</label>
                   <input
                     type="password"
+                    name="password"
                     placeholder="Enter a strong password"
                     className="form-input"
                     required
                   />
                 </div>
 
-                <button type="submit" className="submit-btn">
-                  SIGN UP
+                <button type="submit" className="submit-btn" disabled={isLoading}>
+                  {isLoading && !isLogin ? <span className="spinner"></span> : "SIGN UP"}
                 </button>
               </form>
             </div>

@@ -40,5 +40,4 @@ Post creation, profile features, and additional social interactions are under de
 
 **Digvijay Singh**
 
-🔗 LinkedIn  
-https://www.linkedin.com/in/digvijay-singh-pundir-12a628343/
+[LinkedIn](https://www.linkedin.com/in/digvijay-singh-pundir-12a628343/)

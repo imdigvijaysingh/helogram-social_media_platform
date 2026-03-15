@@ -1,13 +1,13 @@
 # 🌸 OnBoard - Social Media App
 
 OnBoard is a modern social media platform built using the MERN stack.  
-It allows users to create accounts, share posts, and interact with other users in a simple and engaging way.
+It allows users to create accounts, set up profele by uploading profile photo, choosing unique username and share posts.
 
 ---
 
 ## 🚀 Features
 
-- User Authentication (Signup / Login)
+- User Authentication (Signup / Login) with unique email for signup and pre-registered email for login
 - Secure password hashing
 - Set up profile (Profile Photo, Username and date of birth)
 - Create and upload posts with image and caption

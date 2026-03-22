@@ -268,7 +268,9 @@
 }
 
 .error-text {
+  width: 100%;
   color: #ff4d4f;
   font-size: 13px;
   margin-top: 4px;
+  text-align: left;
 }

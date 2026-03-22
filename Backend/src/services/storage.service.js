@@ -1,4 +1,7 @@
-const ImageKit = require("@imagekit/nodejs");
+import ImageKit from '@imagekit/nodejs';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const imagekit = new ImageKit({
 
@@ -17,4 +20,4 @@ async function uploadFile(buffer){
 
 }
 
-module.exports = uploadFile;
+export { uploadFile };

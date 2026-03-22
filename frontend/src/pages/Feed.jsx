@@ -36,7 +36,8 @@ const Feed = () => {
   ];
 
   useEffect(() => {
-    axios.get("http://localhost:3000/posts").then((res) => {
+    // axios.get("http://localhost:3000/posts").then((res) => {                       //development
+    axios.get("https://onboard-social-media-app-2.onrender.com/posts").then((res) => { //production
       setPosts(res.data.posts);
     });
   }, []);
@@ -82,7 +83,7 @@ const Feed = () => {
           </Link>
           <Link to="/friends" className="nav-item">
             <i className="fa-solid fa-folder-open"></i> My Posts
-            <span className="badge">2</span>
+            {/* <span className="badge">2</span> */}
           </Link>
           <Link to="/apis" className="nav-item">
             <i className="fa-solid fa-comments"></i> Chats

@@ -163,15 +163,13 @@ body, html {
 }
 
 .error-text {
-  position: absolute;
-  top: 100%;
-  left: 0;
   width: 100%;
   color: #e74c3c;
-  font-size: 12px;
-  margin: -18px auto;
+  font-size: 13px;
+  margin-top: 4px;
   padding: 0;
-  line-height: 1;
+  line-height: 1.2;
+  text-align: left;
 }
 
 .input-icon {

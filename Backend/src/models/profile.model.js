@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const profileSchema = new mongoose.Schema({
     profilePhoto: String,
@@ -14,4 +14,4 @@ const profileSchema = new mongoose.Schema({
 
 const profileModel = mongoose.model("profile", profileSchema);
 
-module.exports = profileModel;
+export { profileModel };

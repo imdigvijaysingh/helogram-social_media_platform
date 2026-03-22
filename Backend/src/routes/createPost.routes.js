@@ -1,6 +1,6 @@
-const express = require('express');
-const multer = require('multer');
-const createPostController = require('../controllers/createPost.controller');
+import express from 'express';
+import multer from 'multer';
+import { createPost } from '../controllers/createPost.controller.js';
 
 const router = express.Router();
 
@@ -8,6 +8,6 @@ const upload = multer({
     storage: multer.memoryStorage() 
 })
 
-router.post('/', upload.single('image'), createPostController.createPost);
+router.post('/', upload.single('image'), createPost);
 
-module.exports = router;
+export const createPostRoutes = router;

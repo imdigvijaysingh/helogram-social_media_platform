@@ -1,5 +1,5 @@
-const express = require('express');
-const postModel = require('../models/post.model');
+import express from 'express';
+import { postModel } from '../models/post.model.js';
 
 async function getPosts(req, res) {
 const posts = await postModel.find();
@@ -10,4 +10,4 @@ const posts = await postModel.find();
     })
 }
 
-module.exports = { getPosts }; 
+export { getPosts }; 

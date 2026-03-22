@@ -1,4 +1,5 @@
 import "../styles/Authentication.css";
+import "../styles/CreateProfile.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +23,8 @@ const Authentication = () => {
     if (!isLogin) {
       // Sign Up Logic
       axios
-        .post("http://localhost:3000/auth/signup", {
+        // .post("http://localhost:3000/auth/signup", {                          //development 
+        .post("https://onboard-social-media-app-2.onrender.com/auth/signup", {  //production
           firstName: formData.get("firstName"),
           lastName: formData.get("lastName"),
           email: formData.get("email"),
@@ -44,7 +46,8 @@ const Authentication = () => {
     } else {
       // Log In Logic
       axios
-        .post("http://localhost:3000/auth/login", {
+        // .post("http://localhost:3000/auth/login", {                        //development
+        .post("https://onboard-social-media-app-2.onrender.com/auth/login", { //production
           email: formData.get("email"),
           password: formData.get("password"),
         })

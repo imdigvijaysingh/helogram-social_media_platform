@@ -1,5 +1,5 @@
-const profileModel = require('../models/profile.model');
-const uploadFile = require('../services/storage.service');
+import { profileModel } from '../models/profile.model.js';
+import { uploadFile } from '../services/storage.service.js';
 
 async function profile(req, res) {
     try {
@@ -32,6 +32,10 @@ async function profile(req, res) {
 
         return res.status(201).json({
             message: "Profile created successfully",
+            user: {
+                profilePhoto: profile.profilePhoto,
+                userName: profile.userName
+            }
         });
 
     } catch (err) {
@@ -43,4 +47,4 @@ async function profile(req, res) {
     
 };
 
-module.exports = { profile };
+export { profile };

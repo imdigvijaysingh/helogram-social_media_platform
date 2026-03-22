@@ -1,5 +1,5 @@
-const postModel = require('../models/post.model');
-const uploadFile = require('../services/storage.service');
+import { postModel } from '../models/post.model.js';
+import { uploadFile } from '../services/storage.service.js';
 
 async function createPost(req, res) {
     try {
@@ -26,4 +26,4 @@ async function createPost(req, res) {
     }
 }
 
-module.exports = { createPost };
+export { createPost };

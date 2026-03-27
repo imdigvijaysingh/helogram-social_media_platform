@@ -274,3 +274,171 @@
   margin-top: 4px;
   text-align: left;
 }
+
+/* ───────────────────────────────
+   OTP Panel
+─────────────────────────────── */
+
+/* When OTP mode is active, collapse the auth-card so it's centered & smaller */
+.auth-card.otp-mode {
+  max-width: 500px;
+  min-height: auto;
+  transition: max-width 0.5s ease, min-height 0.5s ease;
+}
+
+.otp-panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px 48px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(30px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  z-index: 5;
+  background: white;
+  border-radius: 20px;
+}
+
+.otp-panel.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.otp-panel.inactive {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Sign-up panel fade out when OTP is shown */
+.signup-panel.otp-exit {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/* Mail icon */
+.otp-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #eeedfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.otp-mail-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.otp-form-content {
+  width: 100%;
+}
+
+/* OTP digit inputs */
+.otp-inputs {
+  display: flex;
+  gap: 10px;
+  margin: 28px 0 8px;
+  justify-content: center;
+}
+
+.otp-box {
+  width: 52px;
+  height: 60px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: #333;
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.15s;
+  caret-color: #5046E4;
+}
+
+.otp-box:focus {
+  border-color: #5046E4;
+  box-shadow: 0 0 0 4px rgba(80, 70, 228, 0.12);
+  background: white;
+  /* transform: scale(1.06); */
+}
+
+.otp-box--filled {
+  border-color: #5046E4;
+  background: white;
+}
+
+.otp-error {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.otp-submit-btn {
+  margin-top: 18px;
+}
+
+/* Resend & back */
+.otp-resend {
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+  margin-top: 8px;
+}
+
+.resend-btn {
+  background: none;
+  border: none;
+  color: #5046E4;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.resend-btn:hover {
+  color: #3730b8;
+}
+
+.otp-back-btn {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 18px;
+  padding: 0;
+  display: block;
+  transition: color 0.2s;
+}
+
+.otp-back-btn:hover {
+  color: #5046E4;
+}
+
+@media (max-width: 768px) {
+  .otp-panel {
+    padding: 32px 24px;
+    position: relative;
+    transform: none;
+  }
+
+  .otp-box {
+    width: 44px;
+    height: 52px;
+    font-size: 20px;
+  }
+
+  .auth-card.otp-mode {
+    max-width: 100%;
+  }
+}

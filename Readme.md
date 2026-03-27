@@ -7,7 +7,8 @@ It allows users to create accounts, set up profele by uploading profile photo, c
 
 ## 🚀 Features
 
-- User Authentication (Signup / Login) with unique email for signup and pre-registered email for login
+- User Authentication (Signup/Login) with unique email for signup and pre-registered email for login
+- **OTP** based user **verification**
 - Secure password hashing
 - Set up profile (Profile Photo, Username and date of birth)
 - Create and upload posts with image and caption

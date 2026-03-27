@@ -42,9 +42,10 @@ const CreateProfile = () => {
     formData.append("dob", dob);
 
     axios
-      // .post("http://localhost:3000/profile", formData)                         //development
-      .post("https://onboard-social-media-app-2.onrender.com/profile", formData) //production
+      .post("http://localhost:3000/profile", formData)                         //development
+      // .post("https://onboard-social-media-app-2.onrender.com/profile", formData) //production
       .then((res) => {
+        setIsSuccess(true);
         navigate('/feed');
       })
       .catch((err) => {
@@ -57,11 +58,6 @@ const CreateProfile = () => {
         setIsLoading(false);
       })
     
-      setTimeout(() => {
-        setIsLoading(false);
-        setIsSuccess(true);
-      }, 1000);
-
       setuserNameError("");
   };
 
@@ -129,8 +125,8 @@ const CreateProfile = () => {
             </div>
           </div>
 
-          <button type="submit" className="create-btn">
-            Create Profile
+          <button type="submit" className="create-btn" disabled={isLoading}>
+            {isLoading ? <span className="spinner"></span> : "CREATE PROFILE"}
           </button>
         </form>
       </div>

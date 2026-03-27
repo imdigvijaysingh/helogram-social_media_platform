@@ -1,13 +1,12 @@
-import { app } from './src/app.js';
-import { connectDB } from './src/db/db.js';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import app from './src/app.js';
+import connectDB from './src/config/db.js';
+import config from './src/config/config.js';
+import chalk from 'chalk';
 
 connectDB();
 
-const PORT = process.env.PORT || 3000;
+const PORT = config.PORT;
 
 app.listen(PORT, () => {
-    console.log(`Server is running at port: ${PORT}`)
+    console.log(chalk.blue(`Server is running at port: ${PORT}`))
 })

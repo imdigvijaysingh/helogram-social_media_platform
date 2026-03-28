@@ -227,7 +227,8 @@
     min-height: auto;
   }
 
-  .auth-panel {
+  .login-panel,
+  .signup-panel {
     width: 100% !important;
     position: relative !important;
     transform: none !important;
@@ -236,6 +237,10 @@
 
   .login-panel.inactive,
   .signup-panel.inactive {
+    display: none;
+  }
+
+  .otp-panel.inactive {
     display: none;
   }
 
@@ -426,10 +431,11 @@
 }
 
 @media (max-width: 768px) {
-  .otp-panel {
+  .otp-panel.active {
     padding: 32px 24px;
     position: relative;
     transform: none;
+    inset: auto;
   }
 
   .otp-box {

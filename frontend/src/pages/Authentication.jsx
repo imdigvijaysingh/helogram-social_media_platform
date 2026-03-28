@@ -43,7 +43,8 @@ const Authentication = () => {
       // Sign Up
       const email = formData.get("email");
       axios
-        .post("http://localhost:3000/auth/signup", {
+        // .post("http://localhost:3000/auth/signup", {
+        .post("https://onboard-social-media-app-1.onrender.com/auth/signup", {
           firstName: formData.get("firstName"),
           lastName: formData.get("lastName"),
           email,
@@ -64,7 +65,8 @@ const Authentication = () => {
     } else {
       // Log In
       axios
-        .post("http://localhost:3000/auth/login", {
+        // .post("http://localhost:3000/auth/login", {
+        .post("https://onboard-social-media-app-1.onrender.com/auth/login", {
           email: formData.get("email"),
           password: formData.get("password"),
         })
@@ -125,7 +127,8 @@ const Authentication = () => {
     const otp = code;
 
     axios
-      .post("http://localhost:3000/auth/verify-email", {
+      // .post("http://localhost:3000/auth/verify-email", {
+      .post("https://onboard-social-media-app-1.onrender.com/auth/verify-email", {
         email,
         otp,
       })
@@ -137,13 +140,6 @@ const Authentication = () => {
         setOtpError(message);
         setOtpLoading(false);
       });
-  };
-
-  const handleResendOtp = () => {
-    setOtpDigits(Array(OTP_LENGTH).fill(""));
-    setOtpError("");
-    axios.post("http://localhost:3000/auth/resend-otp", { email: verifiedEmail }).catch(() => {});
-    otpRefs.current[0]?.focus();
   };
 
 
@@ -294,21 +290,6 @@ const Authentication = () => {
                   {otpLoading ? <span className="spinner"></span> : "VERIFY EMAIL"}
                 </button>
               </form>
-
-              <p className="otp-resend">
-                Didn't receive the code?{" "}
-                <button type="button" className="resend-btn" onClick={handleResendOtp}>
-                  Resend
-                </button>
-              </p>
-
-              <button
-                type="button"
-                className="otp-back-btn"
-                onClick={() => { setShowOtp(false); setOtpDigits(Array(OTP_LENGTH).fill("")); setOtpError(""); }}
-              >
-                ← Back to Sign Up
-              </button>
             </div>
           </div>
 

@@ -36,8 +36,8 @@ const Feed = () => {
   ];
 
   useEffect(() => {
-    axios.get("http://localhost:3000/posts").then((res) => {                       //development
-    // axios.get("https://onboard-social-media-app-2.onrender.com/posts").then((res) => { //production
+    // axios.get("http://localhost:3000/posts").then((res) => {                       //development
+    axios.get("https://onboard-social-media-app-1.onrender.com/posts").then((res) => { //production
       setPosts(res.data.posts);
     });
   }, []);

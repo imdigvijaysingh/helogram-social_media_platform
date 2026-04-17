@@ -1,8 +1,12 @@
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import userModel from "../models/user.model.js";
+import profileModel from '../models/profile.model.js';
 import config, { sendEmail } from '../config/config.js';
 import { generateOtp, getOtpHtml } from '../utils/utils.js';
 import otpModel from '../models/otp.model.js';
+import sessionModel from '../models/session.model.js';
+
 
 export async function signup(req, res) {
 
@@ -68,8 +72,47 @@ export async function login(req, res) {
       });
     }
     
+    const refreshToken = jwt.sign({
+      id: user._id,
+    }, config.JWT_SECRET, 
+      {
+          expiresIn: "7d" 
+      } 
+    )
+
+    const refreshTokenHash = await bcrypt.hash(refreshToken, 10);
+
+    const session = await sessionModel.create({
+      user: user._id,
+      refreshTokenHash,
+      ip: req.ip,
+      userAgent: req.headers[ "user-agent" ]
+    })
+
+    const accessToken = jwt.sign({
+      id: user._id,
+      sessionId: session._id
+    }, config.JWT_SECRET, 
+        {
+            expiresIn: "15m"
+        }
+    )
+
+    res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    })
+
+
     return res.status(200).json({
-      message: "User logged in successfully"
+      message: "User logged in successfully",
+      user: {
+        username: user.username,
+        email: user.email
+      },
+        accessToken
     });
 }
 
@@ -105,4 +148,13 @@ export async function verifyEmail(req, res) {
         verified: true
       }
     })
+}
+
+export async function logout(req, res) {
+  res.clearCookie("token");
+  res.clearCookie("refreshToken");
+
+  res.status(200).json({
+    message: "User logged out successfully!"
+  })
 }

@@ -1,5 +1,5 @@
 import { postModel } from '../models/post.model.js';
-import { uploadFile } from '../services/storage.service.js';
+import uploadFile from '../services/storage.service.js';
 
 async function createPost(req, res) {
     try {

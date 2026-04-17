@@ -43,8 +43,8 @@ const Authentication = () => {
       // Sign Up
       const email = formData.get("email");
       axios
-        // .post("http://localhost:3000/auth/signup", {
-        .post("https://onboard-social-media-app-1.onrender.com/auth/signup", {
+        // .post("http://localhost:3000/api/auth/signup", {
+        .post("https://onboard-social-media-app-1.onrender.com/api/auth/signup", {
           firstName: formData.get("firstName"),
           lastName: formData.get("lastName"),
           email,
@@ -65,8 +65,8 @@ const Authentication = () => {
     } else {
       // Log In
       axios
-        // .post("http://localhost:3000/auth/login", {
-        .post("https://onboard-social-media-app-1.onrender.com/auth/login", {
+        // .post("http://localhost:3000/api/auth/login", {
+        .post("https://onboard-social-media-app-1.onrender.com/api/auth/login", {
           email: formData.get("email"),
           password: formData.get("password"),
         })
@@ -84,7 +84,7 @@ const Authentication = () => {
 
   /* ─── OTP digit handling ─── */
   const handleOtpChange = (index, value) => {
-    if (!/^\d?$/.test(value)) return; // only digits
+    if (!/^\d?$/.test(value)) return;
     const next = [...otpDigits];
     next[index] = value;
     setOtpDigits(next);
@@ -127,8 +127,8 @@ const Authentication = () => {
     const otp = code;
 
     axios
-      // .post("http://localhost:3000/auth/verify-email", {
-      .post("https://onboard-social-media-app-1.onrender.com/auth/verify-email", {
+      // .post("http://localhost:3000/api/auth/verify-email", {
+      .post("https://onboard-social-media-app-1.onrender.com/api/auth/verify-email", {
         email,
         otp,
       })

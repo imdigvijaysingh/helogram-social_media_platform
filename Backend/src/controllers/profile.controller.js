@@ -1,7 +1,7 @@
-import { profileModel } from '../models/profile.model.js';
-import { uploadFile } from '../services/storage.service.js';
+import profileModel from '../models/profile.model.js';
+import uploadFile from '../services/storage.service.js';
 
-async function profile(req, res) {
+export async function createProfile(req, res) {
     try {
 
         if (!req.file) {
@@ -10,9 +10,15 @@ async function profile(req, res) {
             });
         }
 
+        if(!req.body.userName) {
+            return res.status(400).json({
+                message: "Username is required"
+            })
+        }
+
         const result = await uploadFile(req.file.buffer); 
 
-        const { profilePhoto, userName, dob } = req.body;
+        const { profilePhoto, userName } = req.body;
 
         const isUserNameAlreadyExists = await profileModel.findOne({
             userName,
@@ -25,9 +31,9 @@ async function profile(req, res) {
         }
 
         const profile = await profileModel.create({
+            user: req.user.id,
             profilePhoto: result.url,
-            userName: req.body.userName,
-            dob: req.body.dob,
+            userName
         });
 
         return res.status(201).json({
@@ -45,6 +51,30 @@ async function profile(req, res) {
         })
     }    
     
-};
+}
 
-export { profile };
+export async function getMe(req, res) {
+    try {
+        const user = await profileModel.findOne({ user: req.user.id });
+
+        if (!user) {
+            return res.status(404).json({
+                message: "Profile not found",
+            });
+        }
+
+        return res.status(200).json({
+            message: "User fetched successfully",
+            user: {
+                profilePhoto: user.profilePhoto,
+                userName: user.userName
+            }
+        });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            message: "Failed to fetch profile",
+        });
+    }
+
+}

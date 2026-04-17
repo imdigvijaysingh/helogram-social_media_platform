@@ -9,14 +9,21 @@ import postRouter from './routes/post.routes.js';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: [
+   "http://localhost:5173",
+   "https://onboardsocial.netlify.app"
+    ],
+    credentials: true
+}));
+
 app.use(express.json());
 app.use(morgan('combined'));
 app.use(cookieParser())
 
-app.use('/auth', authRouter);
-app.use('/profile', profileRouter);
-app.use('/create-post', createPostRouter);
-app.use('/posts', postRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/profile', profileRouter);
+app.use('/api/create-post', createPostRouter);
+app.use('/api/posts', postRouter);
 
 export default app;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Feed.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Profile1 from "../assets/profile.jpg";
 import Profile2 from "../assets/virat.jpg";
 import Profile3 from "../assets/roman.jpg";
@@ -10,6 +10,28 @@ import Profile5 from "../assets/chrishems.jpg";
 import Profile6 from "../assets/harry.webp";
 
 const Feed = () => {
+  
+  // handling the log out functionality by clearing the token cookie and redirecting to login page
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+  
+      await axios.post(
+        // "http://localhost:3000/api/auth/logout",              //development
+        "https://onboardsocial.netlify.app/api/auth/logout",  //production
+        {},
+        { withCredentials: true }
+      );
+  
+      navigate("/");
+  
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  
   const [posts, setPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState({});
   const [savedPosts, setSavedPosts] = useState({});
@@ -36,8 +58,8 @@ const Feed = () => {
   ];
 
   useEffect(() => {
-    // axios.get("http://localhost:3000/posts").then((res) => {                       //development
-    axios.get("https://onboard-social-media-app-1.onrender.com/posts").then((res) => { //production
+    // axios.get("http://localhost:3000/api/posts").then((res) => {                       //development
+    axios.get("https://onboard-social-media-app-1.onrender.com/api/posts").then((res) => { //production
       setPosts(res.data.posts);
     });
   }, []);
@@ -68,10 +90,10 @@ const Feed = () => {
         <div className="sidebar-profile">
           <img src={Profile1} alt="Profile" className="sidebar-avatar" />
           <h2 className="sidebar-username">digvijaypundir</h2>
-          <div className="sidebar-stats">
+          {/* <div className="sidebar-stats">
             <div className="stat"><span>1,158</span> Followers</div>
             <div className="stat"><span>250</span> Following</div>
-          </div>
+          </div> */}
         </div>
         
         <div className="sidebar-nav">
@@ -94,9 +116,12 @@ const Feed = () => {
           <Link to="/settings" className="nav-item">
             <i className="fa-solid fa-gear"></i> Settings
           </Link>
-          <a href="#" className="nav-item logout">
-            <i className="fa-solid fa-arrow-right-from-bracket"></i> Log Out
-          </a>
+          <button 
+          onClick={handleLogout} 
+          className="nav-item logout">
+            <i className="fa-solid fa-arrow-right-from-bracket"></i> 
+            Log Out
+          </button>
         </div>
       </nav>
 

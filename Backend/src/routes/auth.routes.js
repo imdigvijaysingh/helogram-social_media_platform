@@ -7,6 +7,8 @@ authRouter.post('/signup', authController.signup);
 
 authRouter.post('/login', authController.login);
 
-authRouter.post('/verify-email', authController.verifyEmail);
+authRouter.get('/verify-email', authController.verifyEmail);
+
+authRouter.post('/logout', authController.logout);
 
 export default authRouter;

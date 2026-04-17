@@ -11,13 +11,9 @@ const CreatePost = () => {
     const formData = new FormData(e.target);
 
     axios
-      // .post("http://localhost:3000/create-post", formData)                          //development
-      .post("https://onboard-social-media-app-1.onrender.com/create-post", formData)  //production
+      // .post("http://localhost:3000/api/create-post", formData)                          //development
+      .post("https://onboard-social-media-app-1.onrender.com/api/create-post", formData)  //production
       .then((res) => {
-        alert("Post created successfully!");
-        e.target.reset();
-        console.log(res);
-
         navigate("/feed");
       })
       .catch((err) => {

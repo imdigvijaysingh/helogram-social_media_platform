@@ -13,11 +13,12 @@ async function uploadFile(buffer){
 
     const result = await imagekit.files.upload({
         file: buffer.toString("base64"),
-        fileName: "image.png"
+        fileName: "image.png" +Date.now(),
+        folder: "onboard/posts"
     });
 
     return result; 
 
 }
 
-export { uploadFile };
+export default uploadFile;

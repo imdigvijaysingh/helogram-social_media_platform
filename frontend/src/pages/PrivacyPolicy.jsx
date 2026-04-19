@@ -78,10 +78,7 @@ const sections = [
     id: "contact",
     title: "8. Contact Us",
     content: `If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your data, please reach out to us at:`,
-    bullets: [
-      "Email: privacy@onboard.app",
-      "Website: https://onboard.app/contact",
-    ],
+    bullets: ["Email: onboardofficial@gmail.com"],
   },
 ];
 
@@ -93,7 +90,9 @@ const PrivacyPolicy = () => {
       <div className="pp-container">
         {/* Header */}
         <header className="pp-header">
-          <h1 className="pp-logo" onClick={() => navigate("/")}>OnBoard</h1>
+          <h1 className="pp-logo" onClick={() => navigate("/")}>
+            OnBoard
+          </h1>
           <span className="pp-badge">Privacy Policy</span>
         </header>
 
@@ -158,7 +157,7 @@ const PrivacyPolicy = () => {
 
         {/* Footer */}
         <footer className="pp-footer">
-          <p>© {new Date().getFullYear()} OnBoard. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} OnBoard</p>
           <button className="pp-back-btn" onClick={() => navigate(-1)}>
             ← Go Back
           </button>

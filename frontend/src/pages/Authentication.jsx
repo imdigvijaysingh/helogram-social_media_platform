@@ -2,7 +2,7 @@ import "../styles/Authentication.css";
 import "../styles/CreateProfile.css";
 import { useState, useRef } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const OTP_LENGTH = 6;
 
@@ -43,8 +43,8 @@ const Authentication = () => {
       // Sign Up
       const email = formData.get("email");
       axios
-        // .post("http://localhost:3000/api/auth/signup", {
-        .post("https://onboard-social-media-app-1.onrender.com/api/auth/signup", {
+        .post("http://localhost:3000/api/auth/signup", {
+          // .post("https://onboard-social-media-app-1.onrender.com/api/auth/signup", {
           firstName: formData.get("firstName"),
           lastName: formData.get("lastName"),
           email,
@@ -65,8 +65,8 @@ const Authentication = () => {
     } else {
       // Log In
       axios
-        // .post("http://localhost:3000/api/auth/login", {
-        .post("https://onboard-social-media-app-1.onrender.com/api/auth/login", {
+        .post("http://localhost:3000/api/auth/login", {
+          // .post("https://onboard-social-media-app-1.onrender.com/api/auth/login", {
           email: formData.get("email"),
           password: formData.get("password"),
         })
@@ -75,8 +75,10 @@ const Authentication = () => {
         })
         .catch((err) => {
           const message = err.response?.data?.message;
-          if (message === "User not found. Please sign up first.") setEmailError(message);
-          if (message === "Wrong password. Please try again.") setPasswordError(message);
+          if (message === "User not found. Please sign up first.")
+            setEmailError(message);
+          if (message === "Wrong password. Please try again.")
+            setPasswordError(message);
           setIsLoading(false);
         });
     }
@@ -99,14 +101,20 @@ const Authentication = () => {
       otpRefs.current[index - 1]?.focus();
     }
     if (e.key === "ArrowLeft" && index > 0) otpRefs.current[index - 1]?.focus();
-    if (e.key === "ArrowRight" && index < OTP_LENGTH - 1) otpRefs.current[index + 1]?.focus();
+    if (e.key === "ArrowRight" && index < OTP_LENGTH - 1)
+      otpRefs.current[index + 1]?.focus();
   };
 
   const handleOtpPaste = (e) => {
     e.preventDefault();
-    const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, OTP_LENGTH);
+    const pasted = e.clipboardData
+      .getData("text")
+      .replace(/\D/g, "")
+      .slice(0, OTP_LENGTH);
     const next = [...otpDigits];
-    pasted.split("").forEach((ch, i) => { next[i] = ch; });
+    pasted.split("").forEach((ch, i) => {
+      next[i] = ch;
+    });
     setOtpDigits(next);
     const focusIdx = Math.min(pasted.length, OTP_LENGTH - 1);
     otpRefs.current[focusIdx]?.focus();
@@ -127,8 +135,8 @@ const Authentication = () => {
     const otp = code;
 
     axios
-      // .post("http://localhost:3000/api/auth/verify-email", {
-      .post("https://onboard-social-media-app-1.onrender.com/api/auth/verify-email", {
+      .post("http://localhost:3000/api/auth/verify-email", {
+        // .post("https://onboard-social-media-app-1.onrender.com/api/auth/verify-email", {
         email,
         otp,
       })
@@ -136,20 +144,21 @@ const Authentication = () => {
         navigate("/profile");
       })
       .catch((err) => {
-        const message = err.response?.data?.message || "Invalid or expired OTP.";
+        const message =
+          err.response?.data?.message || "Invalid or expired OTP.";
         setOtpError(message);
         setOtpLoading(false);
       });
   };
 
-
   return (
     <div className="auth-page">
       <div className="auth-container">
         <div className={`auth-card ${showOtp ? "otp-mode" : ""}`}>
-
           {/* ── LOGIN PANEL ── */}
-          <div className={`auth-panel login-panel ${isLogin && !showOtp ? "active" : "inactive"}`}>
+          <div
+            className={`auth-panel login-panel ${isLogin && !showOtp ? "active" : "inactive"}`}
+          >
             <h1 className="logo">OnBoard</h1>
             <div className="form-content">
               <h2>Log in to Your Account</h2>
@@ -176,10 +185,20 @@ const Authentication = () => {
                     placeholder="Enter your password"
                     className="form-input"
                   />
-                  {passwordError && <p className="error-text">{passwordError}</p>}
+                  {passwordError && (
+                    <p className="error-text">{passwordError}</p>
+                  )}
                 </div>
-                <button type="submit" className="submit-btn" disabled={isLoading}>
-                  {isLoading && isLogin ? <span className="spinner"></span> : "LOG IN"}
+                <button
+                  type="submit"
+                  className="submit-btn"
+                  disabled={isLoading}
+                >
+                  {isLoading && isLogin ? (
+                    <span className="spinner"></span>
+                  ) : (
+                    "LOG IN"
+                  )}
                 </button>
               </form>
             </div>
@@ -241,22 +260,45 @@ const Authentication = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="submit-btn" disabled={isLoading}>
-                  {isLoading && !isLogin ? <span className="spinner"></span> : "CREATE ACCOUNT"}
+                <button
+                  type="submit"
+                  className="submit-btn"
+                  disabled={isLoading}
+                >
+                  {isLoading && !isLogin ? (
+                    <span className="spinner"></span>
+                  ) : (
+                    "CREATE ACCOUNT"
+                  )}
                 </button>
               </form>
             </div>
           </div>
 
           {/* ── OTP PANEL ── */}
-          <div className={`auth-panel otp-panel ${showOtp ? "active" : "inactive"}`}>
+          <div
+            className={`auth-panel otp-panel ${showOtp ? "active" : "inactive"}`}
+          >
             <h1 className="logo">OnBoard</h1>
             <div className="form-content otp-form-content">
               {/* Mail icon */}
               <div className="otp-icon-wrap">
                 <svg className="otp-mail-icon" viewBox="0 0 24 24" fill="none">
-                  <rect x="2" y="4" width="20" height="16" rx="3" stroke="#5046E4" strokeWidth="1.8"/>
-                  <path d="M2 7l10 7 10-7" stroke="#5046E4" strokeWidth="1.8" strokeLinecap="round"/>
+                  <rect
+                    x="2"
+                    y="4"
+                    width="20"
+                    height="16"
+                    rx="3"
+                    stroke="#5046E4"
+                    strokeWidth="1.8"
+                  />
+                  <path
+                    d="M2 7l10 7 10-7"
+                    stroke="#5046E4"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </div>
 
@@ -286,8 +328,16 @@ const Authentication = () => {
 
                 {otpError && <p className="error-text otp-error">{otpError}</p>}
 
-                <button type="submit" className="submit-btn otp-submit-btn" disabled={otpLoading}>
-                  {otpLoading ? <span className="spinner"></span> : "VERIFY EMAIL"}
+                <button
+                  type="submit"
+                  className="submit-btn otp-submit-btn"
+                  disabled={otpLoading}
+                >
+                  {otpLoading ? (
+                    <span className="spinner"></span>
+                  ) : (
+                    "VERIFY EMAIL"
+                  )}
                 </button>
               </form>
             </div>
@@ -295,7 +345,9 @@ const Authentication = () => {
 
           {/* ── TOGGLE PANEL ── */}
           {!showOtp && (
-            <div className={`toggle-panel ${isLogin ? "login-active" : "signup-active"}`}>
+            <div
+              className={`toggle-panel ${isLogin ? "login-active" : "signup-active"}`}
+            >
               <div className="toggle-content">
                 {isLogin ? (
                   <>
@@ -323,6 +375,9 @@ const Authentication = () => {
               </div>
             </div>
           )}
+        </div>
+        <div className="footer">
+          <Link to="/privacy-policy">Privacy Policy</Link>
         </div>
       </div>
     </div>

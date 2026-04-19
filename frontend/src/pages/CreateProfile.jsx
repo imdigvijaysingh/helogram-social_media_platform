@@ -42,8 +42,8 @@ const CreateProfile = () => {
     formData.append("dob", dob);
 
     axios
-      // .post("http://localhost:3000/api/profile", formData)                         //development
-      .post("https://onboard-social-media-app-1.onrender.com/api/profile", formData) //production
+      .post("http://localhost:3000/api/profile", formData)                         //development
+      // .post("https://onboard-social-media-app-1.onrender.com/api/profile", formData) //production
       .then((res) => {
         setIsSuccess(true);
         navigate('/feed');

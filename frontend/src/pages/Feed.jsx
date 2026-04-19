@@ -17,8 +17,8 @@ const Feed = () => {
     try {
   
       await axios.post(
-        // "http://localhost:3000/api/auth/logout",              //development
-        "https://onboardsocial.netlify.app/api/auth/logout",  //production
+        "http://localhost:3000/api/auth/logout",              //development
+        // "https://onboardsocial.netlify.app/api/auth/logout",  //production
         {},
         { withCredentials: true }
       );
@@ -58,8 +58,8 @@ const Feed = () => {
   ];
 
   useEffect(() => {
-    // axios.get("http://localhost:3000/api/posts").then((res) => {                       //development
-    axios.get("https://onboard-social-media-app-1.onrender.com/api/posts").then((res) => { //production
+    axios.get("http://localhost:3000/api/posts").then((res) => {                       //development
+    // axios.get("https://onboard-social-media-app-1.onrender.com/api/posts").then((res) => { //production
       setPosts(res.data.posts);
     });
   }, []);

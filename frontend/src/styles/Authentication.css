@@ -9,9 +9,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)), url('../assets/background.png');
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  padding: 20px;
+  background:
+    radial-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)),
+    url("../assets/background.png");
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    sans-serif;
+  flex-direction: column;
+  padding: 10px 20px;
 }
 
 .auth-card {
@@ -28,7 +33,9 @@
 
 .auth-panel {
   padding: 40px;
-  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transition:
+    transform 0.6s ease-in-out,
+    opacity 0.6s ease-in-out;
   opacity: 1;
 }
 
@@ -54,7 +61,7 @@
 
 .logo {
   font-size: 35px;
-  color: #5046E4;
+  color: #5046e4;
   margin-bottom: 30px;
   font-weight: 700;
 }
@@ -108,14 +115,16 @@
 .submit-btn {
   width: 100%;
   padding: 14px;
-  background: #5046E4;
+  background: #5046e4;
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
   margin-bottom: 20px;
 }
 
@@ -165,7 +174,7 @@
   top: 0;
   width: 50%;
   height: 100%;
-  background: #5046E4;
+  background: #5046e4;
   color: white;
   display: flex;
   align-items: center;
@@ -288,7 +297,9 @@
 .auth-card.otp-mode {
   max-width: 500px;
   min-height: auto;
-  transition: max-width 0.5s ease, min-height 0.5s ease;
+  transition:
+    max-width 0.5s ease,
+    min-height 0.5s ease;
 }
 
 .otp-panel {
@@ -302,7 +313,9 @@
   opacity: 0;
   pointer-events: none;
   transform: translateY(30px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
   z-index: 5;
   background: white;
   border-radius: 20px;
@@ -365,19 +378,22 @@
   color: #333;
   background: #fafafa;
   outline: none;
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.15s;
-  caret-color: #5046E4;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    transform 0.15s;
+  caret-color: #5046e4;
 }
 
 .otp-box:focus {
-  border-color: #5046E4;
+  border-color: #5046e4;
   box-shadow: 0 0 0 4px rgba(80, 70, 228, 0.12);
   background: white;
   /* transform: scale(1.06); */
 }
 
 .otp-box--filled {
-  border-color: #5046E4;
+  border-color: #5046e4;
   background: white;
 }
 
@@ -401,7 +417,7 @@
 .resend-btn {
   background: none;
   border: none;
-  color: #5046E4;
+  color: #5046e4;
   font-weight: 600;
   cursor: pointer;
   font-size: 13px;
@@ -427,7 +443,7 @@
 }
 
 .otp-back-btn:hover {
-  color: #5046E4;
+  color: #5046e4;
 }
 
 @media (max-width: 768px) {
@@ -447,4 +463,24 @@
   .auth-card.otp-mode {
     max-width: 100%;
   }
+}
+.footer {
+  width: 100%;
+  max-width: 1000px; /* Match your card width */
+  margin-top: 24px; /* Space between card and footer */
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8); /* Slightly transparent for better look */
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.footer a:hover {
+  opacity: 0.7;
+  text-decoration: underline;
 }

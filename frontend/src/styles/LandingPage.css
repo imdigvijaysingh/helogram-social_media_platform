@@ -1,0 +1,120 @@
+/* Landing Page Specifics */
+/* .landing-header {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+} */
+
+/* .header-btns {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+} */
+
+.text-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* .mini-btn {
+  padding: 8px 20px;
+  margin-bottom: 0;
+  width: auto;
+} */
+
+.auth-card {
+  margin-top: 20px;
+}
+
+.landing-card {
+  padding: 60px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hero-section {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text h2 {
+  font-size: 42px;
+  color: #333;
+  line-height: 1.2;
+}
+
+.hero-text h2 span {
+  color: #5046e4;
+}
+
+.hero-preview {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* UI Mockup Placeholder */
+.mockup-container {
+  width: 100%;
+  height: 250px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: grid;
+  grid-template-columns: 1fr 3fr 1.5fr;
+  gap: 10px;
+  padding: 10px;
+}
+
+.mockup-sidebar {
+  background: #eeedfb;
+  border-radius: 4px;
+}
+.mockup-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mockup-post {
+  background: #f0f0f0;
+  height: 100%;
+  border-radius: 4px;
+}
+.mockup-suggestions {
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+@media (max-width: 850px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  .landing-card {
+    padding: 40px 20px;
+  }
+  .mockup-container {
+    display: none; /* Hide preview on mobile for space */
+  }
+}
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
